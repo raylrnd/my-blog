@@ -118,7 +118,7 @@ public class ArticleController extends BaseController {
 
     //文件下载功能
     //edited by ：钟顺超 time :2019.2.23 7:27PM
-    //根据传过来的name，uid找到文件的fkey属性
+
 
     @GetMapping("/download/{cid}") //id为时间戳@RequestParam
     @ResponseBody
