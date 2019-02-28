@@ -123,8 +123,8 @@ public class ArticleController extends BaseController {
     @GetMapping("/download/{cid}") //id为时间戳@RequestParam
     @ResponseBody
     public void download(@PathVariable String cid ,HttpServletRequest request, HttpServletResponse response) {
-        ContentVo contents = contentsService.getContents(cid);
-
+        ContentVo contents = contentsService.getContents(cid);//获取文章内容
+        String title = contents.getTitle();//获取文章标题
         try (
                 //jdk7新特性，可以直接写到try()括号里面，java会自动关闭
                 InputStream inputStream = new ByteArrayInputStream(contents.getContent().getBytes());
@@ -134,7 +134,7 @@ public class ArticleController extends BaseController {
             //指明为下载
             response.setContentType("application/x-download");
             //String fileName = "test.txt";
-            response.addHeader("Content-Disposition", "attachment;fileName=" + "SourceCode");   // 设置文件名
+            response.addHeader("Content-Disposition", "attachment;fileName=" + title + ".txt");   // 设置文件名
 
 
             //把输入流copy到输出流
